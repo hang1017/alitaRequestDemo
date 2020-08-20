@@ -27,6 +27,14 @@ const DvaModel: DvaModelType = {
   effects: {
     *fetch({ payload }, { call, put }) {
       const data = yield request('/api/herolist.json');
+
+      const detailData = yield request('/api/herodetails.json', {
+        method: 'POST',
+        body: JSON.stringify({
+          ename: 110,
+        }),
+      });
+      console.log(detailData);
       yield put({
         type: 'save',
         payload: { herolist: data },
