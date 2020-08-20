@@ -1,4 +1,11 @@
 export default {
   appType: 'h5',
-  mobileLayout: true
+  mobileLayout: true,
+  proxy: {
+    '/api': {
+      target: 'https://pvp.qq.com/web201605/js/',
+      changeOrigin: true,
+      pathRewrite: { '^/api': '' },
+    },
+  },
 };

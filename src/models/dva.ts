@@ -26,7 +26,7 @@ const DvaModel: DvaModelType = {
 
   effects: {
     *fetch({ payload }, { call, put }) {
-      const data = yield request('https://pvp.qq.com/web201605/js/herolist.json');
+      const data = yield request('/api/herolist.json');
       yield put({
         type: 'save',
         payload: { herolist: data },
