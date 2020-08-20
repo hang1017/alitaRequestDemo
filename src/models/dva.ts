@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { query } from '@/services/api';
+import { queryHeroList, getHeroDetails } from '@/services/api';
 import { Effect, request } from 'alita';
 
 export interface DvaModelState {
@@ -26,13 +26,9 @@ const DvaModel: DvaModelType = {
 
   effects: {
     *fetch({ payload }, { call, put }) {
-      const data = yield request('/api/herolist.json');
-
-      const detailData = yield request('/api/herodetails.json', {
-        method: 'POST',
-        body: JSON.stringify({
-          ename: 110,
-        }),
+      const data = yield call(queryHeroList);
+      const detailData = yield call(getHeroDetails, {
+        ename: 110,
       });
       console.log(detailData);
       yield put({
